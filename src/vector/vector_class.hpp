@@ -38,6 +38,8 @@ class vector {
   // void push_back(const T& value);
   // void push_back(const_reference value);
   value_type& operator[](size_t i) { return *(begin_ + i); }
+  // Help Functions
+  void initializeFromItems(const T* listIt) const;
 };
 }  // namespace s21
 

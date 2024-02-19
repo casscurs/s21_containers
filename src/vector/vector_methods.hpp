@@ -17,19 +17,22 @@ s21::vector<T>::vector(std::initializer_list<value_type> const& items)
           new uint8_t[items.size() * sizeof(value_type)])),
       end_(begin_ + items.size()),
       AllEnd_(begin_ + items.size()) {
-  iterator it = begin_;
-  auto listIt = items.begin();
-  try {
-    for (; it != end_; ++it, ++listIt) {
-      new (it) value_type(*listIt);
-    }
-  } catch (...) {
-    for (iterator delit = begin_; delit != it; ++delit) {
-      delit->~value_type();
-    }
-    delete[] reinterpret_cast<uint8_t*>(begin_);
-    throw;
-  }
+  // iterator it = begin_;
+
+  // auto listIt = items.begin();
+
+  // try {
+  //   for (; it != end_; ++it, ++listIt) {
+  //     new (it) value_type(*listIt);
+  //   }
+  // } catch (...) {
+  //   for (iterator delit = begin_; delit != it; ++delit) {
+  //     delit->~value_type();
+  //   }
+  //   delete[] reinterpret_cast<uint8_t*>(begin_);
+  //   throw;
+  // }
+  initializeFromItems(items.begin());
 }
 
 template <typename T>
@@ -38,19 +41,20 @@ s21::vector<T>::vector(const vector& v)
           new uint8_t[v.size() * sizeof(value_type)])),
       end_(begin_ + v.size()),
       AllEnd_(begin_ + v.size()) {
-  iterator it = begin_;
-  auto listIt = items.begin();
-  try {
-    for (; it != end_; ++it, ++listIt) {
-      new (it) value_type(*listIt);
-    }
-  } catch (...) {
-    for (iterator delit = begin_; delit != it; ++delit) {
-      delit->~value_type();
-    }
-    delete[] reinterpret_cast<uint8_t*>(begin_);
-    throw;
-  }
+  // iterator it = begin_;
+  // iterator listIt = v.begin_;
+  // try {
+  //   for (; it != end_; ++it, ++listIt) {
+  //     new (it) value_type(*listIt);
+  //   }
+  // } catch (...) {
+  //   for (iterator delit = begin_; delit != it; ++delit) {
+  //     delit->~value_type();
+  //   }
+  //   delete[] reinterpret_cast<uint8_t*>(begin_);
+  //   throw;
+  // }
+  initializeFromItems(v.begin_);
 }
 
 template <typename T>
@@ -62,7 +66,6 @@ template <typename T>
 typename s21::vector<T>::size_type s21::vector<T>::capacity() const noexcept {
   return AllEnd_ - begin_;
 }
-
 // template <typename T>
 // void s21::vector<T>::reserve(size_t newcap) {
 //   if (capacity >= newcap) return;
