@@ -1,5 +1,9 @@
-#ifndef S21_CONTAINERS_SRC_VECTOR_VECTOR_HELP_HPP_
-#define S21_CONTAINERS_SRC_VECTOR_VECTOR_HELP_HPP_
+/* Copyright [2024] <Casscurs> */
+
+#ifndef VECTOR_HELP_HPP_
+#define VECTOR_HELP_HPP_
+
+#include <utility>
 
 #include "./vector_class.hpp"
 
@@ -9,11 +13,11 @@ void s21::vector<T>::initializeFromItems(iterator start, const_iterator end,
   auto it = start;
   try {
     for (; it != end; ++it, ++listIt) {
-      new (it) value_type(*listIt);
+      new (it) T(*listIt);
     }
   } catch (...) {
     for (iterator delit = start; delit != it; ++delit) {
-      delit->~value_type();
+      delit->~T();
     }
     delete[] reinterpret_cast<uint8_t*>(start);
     throw;
@@ -21,9 +25,9 @@ void s21::vector<T>::initializeFromItems(iterator start, const_iterator end,
   return;
 }
 template <typename T>
-void s21::vector<T>::clear() {
+void s21::vector<T>::full_clear() {
   for (iterator del = begin_; del != end_; ++del) {
-    del->~value_type();
+    del->~T();
   }
 
   delete[] reinterpret_cast<uint8_t*>(begin_);
@@ -41,4 +45,17 @@ void s21::vector<T>::swap(vector&& v) {
   return;
 }
 
-#endif  // S21_CONTAINERS_SRC_VECTOR_VECTOR_HELP_HPP_
+template <typename T>
+void s21::vector<T>::reallocation(size_t size) {
+  T* newarr_ = reinterpret_cast<T*>(new uint8_t[size * sizeof(T)]);
+  size_type objQuant = this->size();
+
+  initializeFromItems(newarr_, newarr_ + objQuant, begin_);
+  this->full_clear();
+
+  begin_ = newarr_;
+  end_ = newarr_ + objQuant;
+  AllEnd_ = newarr_ + size;
+}
+
+#endif  // VECTOR_HELP_HPP_

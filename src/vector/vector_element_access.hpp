@@ -1,5 +1,7 @@
-#ifndef S21_CONTAINERS_SRC_VECTOR_VECTOR_ELEMENT_ACCESS_HPP_
-#define S21_CONTAINERS_SRC_VECTOR_VECTOR_ELEMENT_ACCESS_HPP_
+/* Copyright [2024] <Casscurs> */
+
+#ifndef VECTOR_VECTOR_ELEMENT_ACCESS_HPP_
+#define VECTOR_VECTOR_ELEMENT_ACCESS_HPP_
 
 #include "./vector_class.hpp"
 
@@ -38,4 +40,4 @@ T* s21::vector<T>::data() const noexcept {
   return begin_;
 }
 
-#endif  // S21_CONTAINERS_SRC_VECTOR_VECTOR_ELEMENT_ACCESS_HPP_
+#endif  // VECTOR_VECTOR_ELEMENT_ACCESS_HPP_

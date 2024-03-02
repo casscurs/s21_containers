@@ -1,5 +1,7 @@
-#ifndef S21_CONTAINERS_SRC_VECTOR_VECTOR_HPP_
-#define S21_CONTAINERS_SRC_VECTOR_VECTOR_HPP_
+/* Copyright [2024] <Casscurs> */
+
+#ifndef VECTOR_HPP_
+#define VECTOR_HPP_
 
 #include <iostream>
 
@@ -9,5 +11,6 @@
 #include "./vector_functions.hpp"
 #include "./vector_help.hpp"
 #include "./vector_iterators.hpp"
+#include "./vector_modifiers.hpp"
 
-#endif  // S21_CONTAINERS_SRC_VECTOR_VECTOR_HPP
+#endif  // VECTOR_HPP_

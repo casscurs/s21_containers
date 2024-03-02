@@ -1,5 +1,7 @@
-#ifndef S21_CONTAINERS_SRC_VECTOR_VECTOR_FUNCTIONS_HPP_
-#define S21_CONTAINERS_SRC_VECTOR_VECTOR_FUNCTIONS_HPP_
+/* Copyright [2024] <Casscurs> */
+
+#ifndef VECTOR_FUNCTIONS_HPP_
+#define VECTOR_FUNCTIONS_HPP_
 
 #include "./vector_class.hpp"
 
@@ -18,11 +20,11 @@ s21::vector<T>::vector(size_type n)
   iterator it = begin_;
   try {
     for (; it != end_; ++it) {
-      new (it) value_type();
+      new (it) T();
     }
   } catch (...) {
     for (iterator delit = begin_; delit != it; ++delit) {
-      delit->~value_type();
+      delit->~T();
     }
     delete[] reinterpret_cast<uint8_t*>(begin_);
     throw;
@@ -60,16 +62,21 @@ s21::vector<T>::vector(vector&& v) noexcept
 /* Деструктор */
 template <typename T>
 s21::vector<T>::vector::~vector() noexcept {
-  clear();
+  full_clear();
 }
 
 /* Присваивание перемещением */
 template <typename T>
-typename s21::vector<T>::reference s21::vector<T>::operator=(vector&& v) {
+s21::vector<T>& s21::vector<T>::operator=(vector&& v) {
   if (this == &v) return *this;
-  clear();
-  swap(v);
+  full_clear();
+  begin_ = v.begin_;
+  end_ = v.end_;
+  AllEnd_ = v.AllEnd_;
+  v.begin_ = nullptr;
+  v.end_ = nullptr;
+  v.AllEnd_ = nullptr;
   return *this;
 }
 
-#endif  // S21_CONTAINERS_SRC_VECTOR_VECTOR_FUNCTIONS_HPP_
+#endif  // VECTOR_FUNCTIONS_HPP_

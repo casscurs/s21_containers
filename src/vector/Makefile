@@ -5,7 +5,7 @@ COLOR_TITLE = \033[1;36m
 COLOR_SUCCESS = \033[1;32m
 COLOR_RESET = \033[0m
 
-NAME = s21_vector
+NAME = s21_vector.a
 SRC_FILES = $(wildcard *.cpp)
 HEADER_FILES = $(wildcard *.hpp)
 OBJ_FILES = $(patsubst %.cpp, %.o, $(SRC_FILES))
@@ -43,8 +43,9 @@ test : $(NAME) $(TESTS_OBJ)
 	@echo "$(COLOR_TITLE)=====================$(COLOR_RESET)"
 
 # $(AR) $(NAME) $?
+# $(CC) $(CFLAGS) $(COVERAGE) -o $@ $(OBJ_FILES)
 $(NAME) : $(OBJ_FILES)
-	$(CC) $(CFLAGS) $(COVERAGE) -o $@ $(OBJ_FILES)
+	$(AR) $(NAME) $?
 	@echo "$(COLOR_SUCCESS)=== Build complete ===$(COLOR_RESET)"
 
 %.o : %.cpp

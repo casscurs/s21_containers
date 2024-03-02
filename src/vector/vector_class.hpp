@@ -1,5 +1,7 @@
-#ifndef S21_CONTAINERS_SRC_VECTOR_VECTOR_CLASS_HPP_
-#define S21_CONTAINERS_SRC_VECTOR_VECTOR_CLASS_HPP_
+/* Copyright [2024] <Casscurs> */
+
+#ifndef VECTOR_CLASS_HPP_
+#define VECTOR_CLASS_HPP_
 
 namespace s21 {
 template <typename T>
@@ -25,7 +27,7 @@ class vector {
   vector(const vector& v);
   vector(vector&& v) noexcept;
   ~vector() noexcept;
-  reference operator=(vector&& v);
+  vector<T>& operator=(vector&& v);
 
   /* Element access */
   reference at(size_type pos);
@@ -44,14 +46,24 @@ class vector {
   size_type max_size() const noexcept;
   void reserve(size_type size);
   size_type capacity() const noexcept;
-  // void shrink_to_fit();
+  void shrink_to_fit();
 
+  /* Modifiers */
+  void clear() noexcept;
+  iterator insert(iterator pos, const_reference value);
+  void erase(iterator pos);
+  void push_back(const_reference value);
+  void pop_back();
+  void swap(vector& other);
+
+ private:
   // Help Functions
   void initializeFromItems(iterator start, const_iterator end,
                            const_iterator listIt);
-  void clear();
+  void reallocation(size_t size);
+  void full_clear();
   void swap(vector&& v);
 };
 }  // namespace s21
 
-#endif  // S21_CONTAINERS_SRC_VECTOR_VECTOR_CLASS_HPP_
+#endif  // VECTOR_CLASS_HPP_
