@@ -1,4 +1,4 @@
-﻿CC = g++
+﻿CC = g++ -std=c++17
 CFLAGS = -Wall -Wextra -Werror -lstdc++ -lm
 TEST_FLAGS = -lgtest -pthread
 

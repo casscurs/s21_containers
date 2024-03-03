@@ -2,6 +2,7 @@
 #define MAP_H
 #include <iostream>
 #include "../bitree/bitree.h"
+#include "../vector/vector.hpp"
 
 namespace s21 {
 
@@ -123,6 +124,13 @@ public:
     } catch (const std::out_of_range& e) {
       return false;
     }
+  }
+
+  template <typename... Args>
+  vector<std::pair<iterator, bool>> insert_many(Args&&... args) {
+    vector<std::pair<iterator, bool>> out;
+    ((out.push_back(this->insert(args))), ...);
+    return out;
   }
 };
 

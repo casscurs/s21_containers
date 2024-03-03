@@ -157,6 +157,18 @@ TEST(s21_multiset, bounds) {
   ASSERT_EQ(23, it2.cget());
 }
 
+TEST(s21_multiset, insert_many) {
+  s21::multiset<int> ms = {
+    54, 93, 23, 23, 23, 02, 29, 67, 83, 83, 83, 83, 83, 13
+  };
+  auto out = ms.insert_many(23, 23, 45, 45, 83);
+  ASSERT_EQ(out[0].second, true);
+  ASSERT_EQ(out[1].second, true);
+  ASSERT_EQ(out[2].second, true);
+  ASSERT_EQ(out[3].second, true);
+  ASSERT_EQ(out[4].second, true);
+}
+
 int main(int argc, char** argv) {
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();

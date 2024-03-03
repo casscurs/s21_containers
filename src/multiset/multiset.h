@@ -2,6 +2,7 @@
 #define MULTISET_H
 #include <iostream>
 #include "../bitree/bitree.h"
+#include "../vector/vector.hpp"
 
 namespace s21 {
 
@@ -132,6 +133,13 @@ public:
     while(it.cget() < key)
       ++it;
     return it;
+  }
+
+  template <typename... Args>
+  vector<std::pair<iterator, bool>> insert_many(Args&&... args) {
+    vector<std::pair<iterator, bool>> out;
+    ((out.push_back(std::make_pair(this->insert(args), true))), ...);
+    return out;
   }
 };
 

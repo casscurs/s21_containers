@@ -283,6 +283,35 @@ TEST(s21_map, merge) {
   ASSERT_EQ(14, m1.size());
 }
 
+TEST(s21_map, insert_many) {
+  s21::map<int, std::string> m = {
+    {54, "Adam"},
+    {93, "Eva"},
+    {23, "Nastya"},
+    {58, "Denis"},
+    {12, "Fahruh"},
+    {02, "Mila"},
+    {29, "Hamich"},
+    {67, "Gerald"},
+    {83, "Migel"},
+    {71, "Gaga"},
+    {39, "Yanis"},
+    {91, "Basil"},
+    {47, "Lasha"},
+    {13, "Masha"}
+  };
+  auto out = m.insert_many(
+    std::make_pair(14, "Misha"), 
+    std::make_pair(59, "Mars"), 
+    std::make_pair(91, "Nataly"), 
+    std::make_pair(71, "Jimmy"));
+  s21::map<int, std::string>::iterator it = m.begin();
+  ASSERT_EQ(out[0], std::make_pair(it.set(14), true));
+  ASSERT_EQ(out[1], std::make_pair(it.set(59), true));
+  ASSERT_EQ(out[2], std::make_pair(it.set(91), false));
+  ASSERT_EQ(out[3], std::make_pair(it.set(71), false));
+}
+
 int main(int argc, char** argv) {
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();

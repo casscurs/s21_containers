@@ -126,6 +126,19 @@ TEST(s21_set, find) {
   ASSERT_EQ(it2.cget(), 93);
 }
 
+TEST(s21_set, insert_many) {
+  s21::set<int> s = {
+    54, 93, 23, 58, 12, 02, 29, 67, 83, 71, 39, 91, 47, 13
+  };
+  ASSERT_EQ(14, s.size());
+  s21::set<int>::iterator it = s.begin();
+  auto out = s.insert_many(40, 41, 12, 43, 47);
+  ASSERT_EQ(out[0], std::make_pair(it.set(40), true));
+  ASSERT_EQ(out[1], std::make_pair(it.set(41), true));
+  ASSERT_EQ(out[2], std::make_pair(it.set(12), false));
+  ASSERT_EQ(out[3], std::make_pair(it.set(43), true));
+  ASSERT_EQ(out[4], std::make_pair(it.set(47), false));
+}
 
 int main(int argc, char** argv) {
     ::testing::InitGoogleTest(&argc, argv);
