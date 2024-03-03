@@ -1,15 +1,16 @@
 #include <gtest/gtest.h>
 
 #include "../s21_containers.h"
+#include <list>
 
-TEST(list, default_constructor) {
+TEST(s21_list, default_constructor) {
   std::list<int> std_list;
   s21::list<int> s21_list;
 
   EXPECT_EQ(std_list.size(), s21_list.size());
 }
 
-TEST(list, parameterized_constructor) {
+TEST(s21_list, parameterized_constructor) {
   std::list<int> std_list(3);
   s21::list<int> s21_list(3);
 
@@ -22,7 +23,7 @@ TEST(list, parameterized_constructor) {
   EXPECT_EQ(std_list.size(), s21_list.size());
 }
 
-TEST(list, list_constructor) {
+TEST(s21_list, list_constructor) {
   std::list<int> std_list = {1, 2, 3};
   s21::list<int> s21_list = {1, 2, 3};
 
@@ -35,7 +36,7 @@ TEST(list, list_constructor) {
   EXPECT_EQ(std_list.size(), s21_list.size());
 }
 
-TEST(list, copy_constructor) {
+TEST(s21_list, copy_constructor) {
   std::list<int> std_list1 = {1, 2, 3};
   s21::list<int> s21_list1 = {1, 2, 3};
 
@@ -51,7 +52,7 @@ TEST(list, copy_constructor) {
   EXPECT_EQ(std_list2.size(), s21_list2.size());
 }
 
-TEST(list, move_constructor) {
+TEST(s21_list, move_constructor) {
   std::list<int> std_list1 = {1, 2, 3};
   s21::list<int> s21_list1 = {1, 2, 3};
 
@@ -67,7 +68,7 @@ TEST(list, move_constructor) {
   EXPECT_EQ(std_list2.size(), s21_list2.size());
 }
 
-TEST(list, copy_operator) {
+TEST(s21_list, copy_operator) {
   std::list<int> std_list1 = {1, 2, 3};
   s21::list<int> s21_list1 = {1, 2, 3};
 
@@ -86,7 +87,7 @@ TEST(list, copy_operator) {
   EXPECT_EQ(std_list2.size(), s21_list2.size());
 }
 
-TEST(list, move_operator) {
+TEST(s21_list, move_operator) {
   std::list<int> std_list1 = {1, 2, 3};
   s21::list<int> s21_list1 = {1, 2, 3};
 
@@ -105,7 +106,7 @@ TEST(list, move_operator) {
   EXPECT_EQ(std_list2.size(), s21_list2.size());
 }
 
-TEST(list, front_function) {
+TEST(s21_list, front_function) {
   std::list<int> std_list1 = {1, 2, 3};
   s21::list<int> s21_list1 = {1, 2, 3};
 
@@ -117,7 +118,7 @@ TEST(list, front_function) {
   EXPECT_EQ(std_list2.front(), s21_list2.front());
 }
 
-TEST(list, back_function) {
+TEST(s21_list, back_function) {
   std::list<int> std_list1 = {1, 2, 3};
   s21::list<int> s21_list1 = {1, 2, 3};
 
@@ -129,7 +130,7 @@ TEST(list, back_function) {
   EXPECT_EQ(std_list2.back(), s21_list2.back());
 }
 
-TEST(list, begin_function) {
+TEST(s21_list, begin_function) {
   std::list<int> std_list1 = {1, 2, 3};
   s21::list<int> s21_list1 = {1, 2, 3};
 
@@ -141,7 +142,7 @@ TEST(list, begin_function) {
   EXPECT_EQ(*std_list2.begin(), *s21_list2.begin());
 }
 
-TEST(list, cbegin_function) {
+TEST(s21_list, cbegin_function) {
   std::list<int> std_list1 = {1, 2, 3};
   s21::list<int> s21_list1 = {1, 2, 3};
 
@@ -153,7 +154,7 @@ TEST(list, cbegin_function) {
   EXPECT_EQ(*std_list2.cbegin(), *s21_list2.cbegin());
 }
 
-TEST(list, end_function) {
+TEST(s21_list, end_function) {
   std::list<int> std_list1 = {1, 2, 3};
   s21::list<int> s21_list1 = {1, 2, 3};
 
@@ -165,7 +166,7 @@ TEST(list, end_function) {
   EXPECT_EQ(*std_list2.end(), *s21_list2.end());
 }
 
-TEST(list, cend_function) {
+TEST(s21_list, cend_function) {
   std::list<int> std_list1 = {1, 2, 3};
   s21::list<int> s21_list1 = {1, 2, 3};
 
@@ -177,7 +178,7 @@ TEST(list, cend_function) {
   EXPECT_EQ(*std_list2.cend(), *s21_list2.cend());
 }
 
-TEST(list, empty_function) {
+TEST(s21_list, empty_function) {
   std::list<int> std_list1 = {1, 2, 3};
   s21::list<int> s21_list1 = {1, 2, 3};
 
@@ -189,7 +190,7 @@ TEST(list, empty_function) {
   EXPECT_EQ(std_list2.empty(), s21_list2.empty());
 }
 
-TEST(list, size_function) {
+TEST(s21_list, size_function) {
   std::list<int> std_list1 = {1, 2, 3};
   s21::list<int> s21_list1 = {1, 2, 3};
 
@@ -201,7 +202,7 @@ TEST(list, size_function) {
   EXPECT_EQ(std_list2.size(), s21_list2.size());
 }
 
-TEST(list, max_size_function) {
+TEST(s21_list, max_size_function) {
   std::list<int> std_list1 = {1, 2, 3};
   s21::list<int> s21_list1 = {1, 2, 3};
 
@@ -213,7 +214,7 @@ TEST(list, max_size_function) {
   EXPECT_EQ(std_list2.max_size(), s21_list2.max_size());
 }
 
-TEST(list, clear_function) {
+TEST(s21_list, clear_function) {
   std::list<int> std_list1 = {1, 2, 3};
   s21::list<int> s21_list1 = {1, 2, 3};
 
@@ -225,7 +226,7 @@ TEST(list, clear_function) {
   EXPECT_EQ(std_list1.size(), s21_list1.size());
 }
 
-TEST(list, insert_function) {
+TEST(s21_list, insert_function) {
   std::list<int> std_list1 = {1, 2, 3};
   s21::list<int> s21_list1 = {1, 2, 3};
 
@@ -256,7 +257,7 @@ TEST(list, insert_function) {
   }
 }
 
-TEST(list, erase_function) {
+TEST(s21_list, erase_function) {
   std::list<int> std_list1 = {1, 2, 3, 4, 5};
   s21::list<int> s21_list1 = {1, 2, 3, 4, 5};
 
@@ -285,7 +286,7 @@ TEST(list, erase_function) {
   }
 }
 
-TEST(list, push_back_function) {
+TEST(s21_list, push_back_function) {
   std::list<int> std_list1 = {1, 2, 3, 4, 5};
   s21::list<int> s21_list1 = {1, 2, 3, 4, 5};
 
@@ -303,7 +304,7 @@ TEST(list, push_back_function) {
   }
 }
 
-TEST(list, pop_back_function) {
+TEST(s21_list, pop_back_function) {
   std::list<int> std_list1 = {1, 2, 3, 4, 5};
   s21::list<int> s21_list1 = {1, 2, 3, 4, 5};
 
@@ -321,7 +322,7 @@ TEST(list, pop_back_function) {
   }
 }
 
-TEST(list, push_front_function) {
+TEST(s21_list, push_front_function) {
   std::list<int> std_list1 = {1, 2, 3, 4, 5};
   s21::list<int> s21_list1 = {1, 2, 3, 4, 5};
 
@@ -339,7 +340,7 @@ TEST(list, push_front_function) {
   }
 }
 
-TEST(list, pop_front_function) {
+TEST(s21_list, pop_front_function) {
   std::list<int> std_list1 = {1, 2, 3, 4, 5};
   s21::list<int> s21_list1 = {1, 2, 3, 4, 5};
 
@@ -357,7 +358,7 @@ TEST(list, pop_front_function) {
   }
 }
 
-TEST(list, swap_function) {
+TEST(s21_list, swap_function) {
   std::list<int> std_list1 = {1, 2, 3, 4, 5};
   s21::list<int> s21_list1 = {1, 2, 3, 4, 5};
 
@@ -374,7 +375,7 @@ TEST(list, swap_function) {
   EXPECT_EQ(*std_list2.begin(), *s21_list2.begin());
 }
 
-TEST(list, merge_function) {
+TEST(s21_list, merge_function) {
   std::list<int> std_list1 = {1, 2, 3, 4, 5};
   s21::list<int> s21_list1 = {1, 2, 3, 4, 5};
 
@@ -427,7 +428,7 @@ TEST(list, merge_function) {
   }
 }
 
-TEST(list, splice_function) {
+TEST(s21_list, splice_function) {
   std::list<int> std_list1 = {1, 2, 3, 4};
   s21::list<int> s21_list1 = {1, 2, 3, 4};
 
@@ -459,7 +460,7 @@ TEST(list, splice_function) {
   }
 }
 
-TEST(list, reverse_function) {
+TEST(s21_list, reverse_function) {
   std::list<int> std_list1 = {1, 2, 3, 4, 5};
   s21::list<int> s21_list1 = {1, 2, 3, 4, 5};
 
@@ -475,7 +476,7 @@ TEST(list, reverse_function) {
   }
 }
 
-TEST(list, unique_function) {
+TEST(s21_list, unique_function) {
   std::list<int> std_list1 = {1, 2, 2, 3, 4, 5, 5, 5, 2};
   s21::list<int> s21_list1 = {1, 2, 2, 3, 4, 5, 5, 5, 2};
 
@@ -491,7 +492,7 @@ TEST(list, unique_function) {
   }
 }
 
-TEST(list, sort_function) {
+TEST(s21_list, sort_function) {
   std::list<int> std_list1 = {2, 7, 1, 3, 8, 5};
   s21::list<int> s21_list1 = {2, 7, 1, 3, 8, 5};
 
@@ -521,7 +522,7 @@ TEST(list, sort_function) {
   }
 }
 
-TEST(list, insert_many_function) {
+TEST(s21_list, insert_many_function) {
   std::list<int> std_list1 = {1, 6, 7, 8, 2, 3, 4, 5};
   s21::list<int> s21_list1 = {1, 2, 3, 4, 5};
 
@@ -550,7 +551,7 @@ TEST(list, insert_many_function) {
   }
 }
 
-TEST(list, insert_many_back_function) {
+TEST(s21_list, insert_many_back_function) {
   std::list<int> std_list1 = {1, 2, 3, 4, 5, 6, 7, 8};
   s21::list<int> s21_list1 = {1, 2, 3, 4, 5};
 
@@ -565,7 +566,7 @@ TEST(list, insert_many_back_function) {
   }
 }
 
-TEST(list, insert_many_front_function) {
+TEST(s21_list, insert_many_front_function) {
   std::list<int> std_list1 = {6, 7, 8, 1, 2, 3, 4, 5};
   s21::list<int> s21_list1 = {1, 2, 3, 4, 5};
 

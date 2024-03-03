@@ -2,15 +2,26 @@
 CFLAGS = -Wall -Wextra -Werror -lstdc++ -lm
 TEST_FLAGS = -lgtest -pthread
 TEST_FILES = ./tests/test_s21_*.cc
+COVERAGE =
 
 all: test
 
 test: clean  
-	$(CC) $(CFLAGS) $(TEST_FILES) -o test $(TEST_FLAGS)
+	$(CC) $(CFLAGS) $(TEST_FILES) -o test $(TEST_FLAGS) $(COVERAGE)
 	./test
 
 clean:
 	rm -rf test
+	rm -rf gcovr
+
+add_coverage:
+$(eval COVERAGE += --coverage)
+
+gcovr_report: add_coverage test
+	mkdir gcovr
+	gcovr --html-details gcovr/report.details.html
+	rm -rf ./*.gc*
+	open gcovr/report.details.html
 
 valgrind: test
 	valgrind --tool=memcheck --leak-check=full --track-origins=yes --show-reachable=yes --num-callers=20 --track-fds=yes ./test
