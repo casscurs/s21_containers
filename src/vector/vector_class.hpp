@@ -56,6 +56,13 @@ class vector {
   void pop_back();
   void swap(vector& other);
 
+  /* Modifiers extra */
+  template <typename... Args>
+  iterator insert_many(const_iterator pos, Args&&... args);
+
+  template <typename... Args>
+  void insert_many_back(Args&&... args);
+
  private:
   // Help Functions
   void initializeFromItems(iterator start, const_iterator end,

@@ -1,3 +1,4 @@
+
 #include <gtest/gtest.h>
 
 #include <utility>
@@ -386,134 +387,134 @@ TEST(TestVector, SelfSwap) {
   }
 }
 
-// TEST(TestVector, InsertManyOnce) {
-//   s21::vector<int> vec({1, 2, 3});
+TEST(TestVector, InsertManyOnce) {
+  s21::vector<int> vec{1, 2, 3};
 
-//   auto pos = vec.begin();
-//   ++pos;
-//   pos = vec.insert_many(pos, 4);
+  auto pos = vec.begin();
+  ++pos;
+  pos = vec.insert_many(pos, 4);
 
-//   EXPECT_EQ(*pos, 4);
+  EXPECT_EQ(*pos, 4);
 
-//   EXPECT_EQ(4, vec.size());
-//   EXPECT_EQ(1, vec[0]);
-//   EXPECT_EQ(4, vec[1]);
-//   EXPECT_EQ(2, vec[2]);
-//   EXPECT_EQ(3, vec[3]);
-// }
+  EXPECT_EQ(static_cast<size_t>(4), vec.size());
+  EXPECT_EQ(1, vec[0]);
+  EXPECT_EQ(4, vec[1]);
+  EXPECT_EQ(2, vec[2]);
+  EXPECT_EQ(3, vec[3]);
+}
 
-// TEST(TestVector, InsertManyMultiple) {
-//   s21::vector<char> vec({'a', 'b', 'c'});
+TEST(TestVector, InsertManyMultiple) {
+  s21::vector<char> vec{'a', 'b', 'c'};
 
-//   auto pos = vec.begin();
-//   ++pos;
-//   ++pos;
-//   pos = vec.insert_many(pos, 'd', 'e', 'f');
+  auto pos = vec.begin();
+  ++pos;
+  ++pos;
+  pos = vec.insert_many(pos, 'd', 'e', 'f');
 
-//   EXPECT_EQ(*pos, 'd');
+  EXPECT_EQ(*pos, 'd');
 
-//   EXPECT_EQ(6, vec.size());
-//   EXPECT_EQ('a', vec[0]);
-//   EXPECT_EQ('b', vec[1]);
-//   EXPECT_EQ('d', vec[2]);
-//   EXPECT_EQ('e', vec[3]);
-//   EXPECT_EQ('f', vec[4]);
-//   EXPECT_EQ('c', vec[5]);
+  EXPECT_EQ(static_cast<size_t>(6), vec.size());
+  EXPECT_EQ('a', vec[0]);
+  EXPECT_EQ('b', vec[1]);
+  EXPECT_EQ('d', vec[2]);
+  EXPECT_EQ('e', vec[3]);
+  EXPECT_EQ('f', vec[4]);
+  EXPECT_EQ('c', vec[5]);
 
-//   pos = vec.insert_many(vec.begin(), 'a', 'b', std::move('o'), 'b', 'a');
+  pos = vec.insert_many(vec.begin(), 'a', 'b', std::move('o'), 'b', 'a');
 
-//   EXPECT_EQ(*pos, 'a');
+  EXPECT_EQ(*pos, 'a');
 
-//   EXPECT_EQ(11, vec.size());
-//   EXPECT_EQ('a', vec[0]);
-//   EXPECT_EQ('b', vec[1]);
-//   EXPECT_EQ('o', vec[2]);
-//   EXPECT_EQ('b', vec[3]);
-//   EXPECT_EQ('a', vec[4]);
-//   EXPECT_EQ('a', vec[5]);
-//   EXPECT_EQ('b', vec[6]);
-//   EXPECT_EQ('d', vec[7]);
-//   EXPECT_EQ('e', vec[8]);
-//   EXPECT_EQ('f', vec[9]);
-//   EXPECT_EQ('c', vec[10]);
-// }
+  EXPECT_EQ(static_cast<size_t>(11), vec.size());
+  EXPECT_EQ('a', vec[0]);
+  EXPECT_EQ('b', vec[1]);
+  EXPECT_EQ('o', vec[2]);
+  EXPECT_EQ('b', vec[3]);
+  EXPECT_EQ('a', vec[4]);
+  EXPECT_EQ('a', vec[5]);
+  EXPECT_EQ('b', vec[6]);
+  EXPECT_EQ('d', vec[7]);
+  EXPECT_EQ('e', vec[8]);
+  EXPECT_EQ('f', vec[9]);
+  EXPECT_EQ('c', vec[10]);
+}
 
-// TEST(TestVector, InsertManyNothing) {
-//   s21::vector<double> vec({1.1, 2.2, 3.3});
-//   auto pos = vec.insert_many(vec.begin());
+TEST(TestVector, InsertManyNothing) {
+  s21::vector<double> vec({1.1, 2.2, 3.3});
+  auto pos = vec.insert_many(vec.begin());
 
-//   EXPECT_DOUBLE_EQ(*pos, 1.1);
+  EXPECT_DOUBLE_EQ(*pos, 1.1);
 
-//   EXPECT_EQ(3, vec.size());
-//   EXPECT_DOUBLE_EQ(1.1, vec[0]);
-//   EXPECT_DOUBLE_EQ(2.2, vec[1]);
-//   EXPECT_DOUBLE_EQ(3.3, vec[2]);
-// }
+  EXPECT_EQ(static_cast<size_t>(3), vec.size());
+  EXPECT_DOUBLE_EQ(1.1, vec[0]);
+  EXPECT_DOUBLE_EQ(2.2, vec[1]);
+  EXPECT_DOUBLE_EQ(3.3, vec[2]);
+}
 
-// TEST(TestVector, InsertManyToEmpty) {
-//   s21::vector<int> vec;
-//   auto pos = vec.insert_many(vec.begin(), 1, 2, 3);
+TEST(TestVector, InsertManyToEnd) {
+  s21::vector<char> vec({'a', 'b', 'o'});
+  auto pos = vec.insert_many(vec.end(), 'b', 'u', 's');
+  EXPECT_EQ(*pos, 'b');
 
-//   EXPECT_EQ(*pos, 1);
+  EXPECT_EQ(static_cast<size_t>(6), vec.size());
+  EXPECT_EQ('a', vec[0]);
+  EXPECT_EQ('b', vec[1]);
+  EXPECT_EQ('o', vec[2]);
+  EXPECT_EQ('b', vec[3]);
+  EXPECT_EQ('u', vec[4]);
+  EXPECT_EQ('s', vec[5]);
+}
 
-//   EXPECT_EQ(3, vec.size());
-//   EXPECT_EQ(1, vec[0]);
-//   EXPECT_EQ(2, vec[1]);
-//   EXPECT_EQ(3, vec[2]);
-// }
+TEST(TestVector, InsertManyToEmpty) {
+  s21::vector<int> vec;
+  auto pos = vec.insert_many(vec.begin(), 1, 2, 3);
 
-// TEST(TestVector, InsertManyToEnd) {
-//   s21::vector<char> vec({'a', 'b', 'o'});
-//   auto pos = vec.insert_many(vec.end(), 'b', 'u', 's');
-//   EXPECT_EQ(*pos, 'b');
+  EXPECT_EQ(*pos, 1);
 
-//   EXPECT_EQ(6, vec.size());
-//   EXPECT_EQ('a', vec[0]);
-//   EXPECT_EQ('b', vec[1]);
-//   EXPECT_EQ('o', vec[2]);
-//   EXPECT_EQ('b', vec[3]);
-//   EXPECT_EQ('u', vec[4]);
-//   EXPECT_EQ('s', vec[5]);
-// }
+  EXPECT_EQ(static_cast<size_t>(3), vec.size());
+  EXPECT_EQ(1, vec[0]);
+  EXPECT_EQ(2, vec[1]);
+  EXPECT_EQ(3, vec[2]);
+}
 
-// TEST(TestVector, InsertManyBackOnce) {
-//   s21::vector<int> vec({0, 2, 4, 6});
-//   vec.insert_many_back(8);
+TEST(TestVector, InsertManyBackOnce) {
+  s21::vector<int> vec{0, 2, 4, 6};
+  vec.insert_many_back(8);
 
-//   EXPECT_EQ(5, vec.size());
-//   for (size_t i = 0; i < vec.size(); ++i) {
-//     EXPECT_EQ(2 * i, vec[i]);
-//   }
-// }
+  EXPECT_EQ(static_cast<size_t>(5), vec.size());
+  for (size_t i = 0; i < vec.size(); ++i) {
+    EXPECT_EQ(2 * i, static_cast<size_t>(vec[i]));
+  }
+}
 
-// TEST(TestVector, InsertManyBackMultiple) {
-//   s21::vector<int> vec({0, 1, 4, 9});
-//   vec.insert_many_back(std::move(16), std::move(25), 36);
+TEST(TestVector, InsertManyBackMultiple) {
+  s21::vector<int> vec{0, 1, 4, 9};
+  vec.insert_many_back(std::move(16), std::move(25), 36);
 
-//   EXPECT_EQ(7, vec.size());
-//   for (size_t i = 0; i < vec.size(); ++i) {
-//     EXPECT_EQ(i * i, vec[i]);
-//   }
-// }
+  EXPECT_EQ(static_cast<size_t>(7), vec.size());
+  for (size_t i = 0; i < vec.size(); ++i) {
+    EXPECT_EQ(i * i, static_cast<size_t>(vec[i]));
+  }
+}
 
-// TEST(TestVector, InsertManyBackNothing) {
-//   s21::vector<char> vec({'c', 'o', 'o', 'l'});
-//   vec.insert_many_back();
+TEST(TestVector, InsertManyBackNothing) {
+  s21::vector<char> vec{'c', 'o', 'o', 'l'};
+  vec.insert_many_back();
 
-//   EXPECT_EQ(4, vec.size());
-//   EXPECT_EQ('c', vec[0]);
-//   EXPECT_EQ('o', vec[1]);
-//   EXPECT_EQ('o', vec[2]);
-//   EXPECT_EQ('l', vec[3]);
-// }
+  EXPECT_EQ(static_cast<size_t>(4), vec.size());
+  EXPECT_EQ('c', vec[0]);
+  EXPECT_EQ('o', vec[1]);
+  EXPECT_EQ('o', vec[2]);
+  EXPECT_EQ('l', vec[3]);
+}
 
-// TEST(TestVector, InsertManyBackEmpty) {
-//   s21::vector<char> vec;
-//   vec.insert_many_back('c', 'o', 'o', 'l');
+TEST(TestVector, InsertManyBackEmpty) {
+  s21::vector<char> vec;
+  vec.insert_many_back('c', 'o', 'o', 'l');
 
-//   EXPECT_EQ(4, vec.size());
-//   EXPECT_EQ('c', vec[0]);
-//   EXPECT_EQ('o', vec[1]);
-//   EXPECT_EQ('o', vec[2]);
-//   EXPECT_EQ('l', vec[3]);
-// }
+  EXPECT_EQ(static_cast<size_t>(4), vec.size());
+  EXPECT_EQ('c', vec[0]);
+  EXPECT_EQ('o', vec[1]);
+  EXPECT_EQ('o', vec[2]);
+  EXPECT_EQ('l', vec[3]);
+}
