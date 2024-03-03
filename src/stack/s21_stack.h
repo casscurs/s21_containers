@@ -39,6 +39,7 @@ class stack {
   void push(const_reference value);
   void pop();
   void swap(stack& other);
+  template <typename... Args>
   void insert_many_front(Args&&... args);
 
  private:

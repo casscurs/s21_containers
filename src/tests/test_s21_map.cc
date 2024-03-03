@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 
-#include "map.h"
+#include "../s21_containers.h"
 
 TEST(s21_map, empty_constructor) {
   s21::map<int, std::string> m;
@@ -310,9 +310,4 @@ TEST(s21_map, insert_many) {
   ASSERT_EQ(out[1], std::make_pair(it.set(59), true));
   ASSERT_EQ(out[2], std::make_pair(it.set(91), false));
   ASSERT_EQ(out[3], std::make_pair(it.set(71), false));
-}
-
-int main(int argc, char** argv) {
-    ::testing::InitGoogleTest(&argc, argv);
-    return RUN_ALL_TESTS();
 }

@@ -3,15 +3,15 @@
 
 #include <utility>
 
-#include "../vector.hpp"
+#include "../s21_containers.h"
 
-TEST(TestVector, BasicConstructor) {
+TEST(s21_vector, basic_constructor) {
   s21::vector<int> vec;
   EXPECT_EQ(vec.data(), nullptr);
   EXPECT_EQ(static_cast<size_t>(0), vec.size());
 }
 
-TEST(TestVector, SizeConstructor) {
+TEST(s21_vector, size_constructor) {
   s21::vector<double> vec(5);
   double* data = vec.data();
 
@@ -23,7 +23,7 @@ TEST(TestVector, SizeConstructor) {
   }
 }
 
-TEST(TestVector, InitializerListConstructor) {
+TEST(s21_vector, initializer_list_constructor) {
   s21::vector<char> vec({'a', 'b', 'c'});
   char* data = vec.data();
 
@@ -35,7 +35,7 @@ TEST(TestVector, InitializerListConstructor) {
   EXPECT_EQ('c', data[2]);
 }
 
-TEST(TestVector, CopyConstructor) {
+TEST(s21_vector, copy_constructor) {
   s21::vector<unsigned> origin({1, 2, 3, 4});
   s21::vector vec(origin);
 
@@ -50,7 +50,7 @@ TEST(TestVector, CopyConstructor) {
   }
 }
 
-TEST(TestVector, MoveConstructor) {
+TEST(s21_vector, move_constructor) {
   s21::vector<unsigned> origin({1, 2, 3, 4});
   s21::vector vec(std::move(origin));
 
@@ -67,7 +67,7 @@ TEST(TestVector, MoveConstructor) {
   }
 }
 
-TEST(TestVector, CopyAssignment) {
+TEST(s21_vector, copy_assignment) {
   s21::vector<unsigned> origin({1, 2, 3, 4});
   s21::vector<unsigned> originCpy({1, 2, 3, 4});
   s21::vector<unsigned> vec(15);
@@ -82,7 +82,7 @@ TEST(TestVector, CopyAssignment) {
   }
 }
 
-TEST(TestVector, InitializerListAssignment) {
+TEST(s21_vector, initializer_list_assignment) {
   s21::vector<unsigned> vec(10);
 
   vec = {1, 2, 3, 4};
@@ -94,7 +94,7 @@ TEST(TestVector, InitializerListAssignment) {
   }
 }
 
-TEST(TestVector, AtNormal) {
+TEST(s21_vector, at_normal) {
   s21::vector<int> vec({1, 2, 3});
   int* data = vec.data();
 
@@ -103,7 +103,7 @@ TEST(TestVector, AtNormal) {
   }
 }
 
-TEST(TestVector, AtOutOfRange) {
+TEST(s21_vector, at_out_of_range) {
   EXPECT_ANY_THROW({
     s21::vector<double> vec;
     vec.at(0);
@@ -115,7 +115,7 @@ TEST(TestVector, AtOutOfRange) {
   });
 }
 
-TEST(TestVector, IndexOperator) {
+TEST(s21_vector, index_operator) {
   s21::vector<char> vec({'a', 'b', 'c', 'd'});
   char* data = vec.data();
 
@@ -124,7 +124,7 @@ TEST(TestVector, IndexOperator) {
   }
 }
 
-TEST(TestVector, Front) {
+TEST(s21_vector, front) {
   s21::vector<int> vec({'a', 'b', 'c', 'd'});
   EXPECT_EQ('a', vec.front());
 
@@ -135,7 +135,7 @@ TEST(TestVector, Front) {
   EXPECT_EQ(nullptr, vec3.front());
 }
 
-TEST(TestVector, Back) {
+TEST(s21_vector, back) {
   s21::vector<int> vec({'a', 'b', 'c', 'd'});
   EXPECT_EQ('d', vec.back());
 
@@ -146,7 +146,7 @@ TEST(TestVector, Back) {
   EXPECT_EQ(nullptr, vec3.back());
 }
 
-TEST(TestVector, Iterator) {
+TEST(s21_vector, iterator) {
   s21::vector<unsigned> vec({0, 2, 4, 6, 8, 10});
   unsigned* data = vec.data();
 
@@ -155,7 +155,7 @@ TEST(TestVector, Iterator) {
   }
 }
 
-TEST(TestVector, Reserve) {
+TEST(s21_vector, reserve) {
   s21::vector<unsigned> vec;
   auto cap = vec.capacity();
 
@@ -173,7 +173,7 @@ TEST(TestVector, Reserve) {
   EXPECT_EQ(static_cast<size_t>(0), vec.size());
 }
 
-TEST(TestVector, ShrinkToFit) {
+TEST(s21_vector, shrink_to_fit) {
   s21::vector<int> vec(25);
 
   vec.reserve(1000);
@@ -189,7 +189,7 @@ TEST(TestVector, ShrinkToFit) {
   EXPECT_EQ(vec.capacity(), vec.size());
 }
 
-TEST(TestVector, Clear) {
+TEST(s21_vector, clear) {
   s21::vector<int> vec;
   vec.clear();
   EXPECT_EQ(static_cast<size_t>(0), vec.size());
@@ -199,7 +199,7 @@ TEST(TestVector, Clear) {
   EXPECT_EQ(static_cast<size_t>(0), vec2.size());
 }
 
-TEST(TestVector, Insert) {
+TEST(s21_vector, insert) {
   s21::vector<char> vec{'a'};
 
   auto pos = vec.insert(vec.begin(), 'b');
@@ -228,7 +228,7 @@ TEST(TestVector, Insert) {
   EXPECT_EQ('a', vec[4]);
 }
 
-TEST(TestVector, InsertEnd) {
+TEST(s21_vector, insert_end) {
   s21::vector<char> vec{'a'};
 
   auto pos = vec.insert(vec.end(), 'b');
@@ -243,7 +243,7 @@ TEST(TestVector, InsertEnd) {
   EXPECT_EQ('c', vec[2]);
 }
 
-TEST(TestVector, InsertEmpty) {
+TEST(s21_vector, insert_empty) {
   s21::vector<int> vec;
 
   auto pos = vec.insert(vec.begin(), 11);
@@ -261,7 +261,7 @@ TEST(TestVector, InsertEmpty) {
   EXPECT_DOUBLE_EQ(2.33, vec2[0]);
 }
 
-TEST(TestVector, Erase) {
+TEST(s21_vector, erase) {
   s21::vector<int> vec({1, 2, 3, 4, 5});
 
   auto pos = vec.begin();
@@ -293,7 +293,7 @@ TEST(TestVector, Erase) {
   EXPECT_EQ(4, vec[1]);
 }
 
-TEST(TestVector, PushBack) {
+TEST(s21_vector, push_back) {
   s21::vector<int> vec;
 
   for (int i = 0; i < 100; ++i) {
@@ -315,7 +315,7 @@ TEST(TestVector, PushBack) {
   }
 }
 
-TEST(TestVector, PopBack) {
+TEST(s21_vector, pop_back) {
   s21::vector<int> vec;
 
   for (int i = 0; i < 2000; ++i) {
@@ -339,7 +339,7 @@ TEST(TestVector, PopBack) {
   EXPECT_EQ(static_cast<size_t>(0), vec.size());
 }
 
-TEST(TestVector, Swap) {
+TEST(s21_vector, swap) {
   s21::vector<int> vec({1, 2, 3, 4});
   s21::vector copied_vec(vec);
   auto size = vec.size();
@@ -375,7 +375,7 @@ TEST(TestVector, Swap) {
   }
 }
 
-TEST(TestVector, SelfSwap) {
+TEST(s21_vector, self_swap) {
   s21::vector<int> vec({1, 2, 3, 4});
   s21::vector copied_vec(vec);
 
@@ -387,7 +387,7 @@ TEST(TestVector, SelfSwap) {
   }
 }
 
-TEST(TestVector, InsertManyOnce) {
+TEST(s21_vector, insert_many_once) {
   s21::vector<int> vec{1, 2, 3};
 
   auto pos = vec.begin();
@@ -403,7 +403,7 @@ TEST(TestVector, InsertManyOnce) {
   EXPECT_EQ(3, vec[3]);
 }
 
-TEST(TestVector, InsertManyMultiple) {
+TEST(s21_vector, insert_many_multiple) {
   s21::vector<char> vec{'a', 'b', 'c'};
 
   auto pos = vec.begin();
@@ -439,7 +439,7 @@ TEST(TestVector, InsertManyMultiple) {
   EXPECT_EQ('c', vec[10]);
 }
 
-TEST(TestVector, InsertManyNothing) {
+TEST(s21_vector, insert_many_nothing) {
   s21::vector<double> vec({1.1, 2.2, 3.3});
   auto pos = vec.insert_many(vec.begin());
 
@@ -451,7 +451,7 @@ TEST(TestVector, InsertManyNothing) {
   EXPECT_DOUBLE_EQ(3.3, vec[2]);
 }
 
-TEST(TestVector, InsertManyToEnd) {
+TEST(s21_vector, insert_many_to_end) {
   s21::vector<char> vec({'a', 'b', 'o'});
   auto pos = vec.insert_many(vec.end(), 'b', 'u', 's');
   EXPECT_EQ(*pos, 'b');
@@ -465,7 +465,7 @@ TEST(TestVector, InsertManyToEnd) {
   EXPECT_EQ('s', vec[5]);
 }
 
-TEST(TestVector, InsertManyToEmpty) {
+TEST(s21_vector, insert_many_to_empty) {
   s21::vector<int> vec;
   auto pos = vec.insert_many(vec.begin(), 1, 2, 3);
 
@@ -477,7 +477,7 @@ TEST(TestVector, InsertManyToEmpty) {
   EXPECT_EQ(3, vec[2]);
 }
 
-TEST(TestVector, InsertManyBackOnce) {
+TEST(s21_vector, insert_many_back_once) {
   s21::vector<int> vec{0, 2, 4, 6};
   vec.insert_many_back(8);
 
@@ -487,7 +487,7 @@ TEST(TestVector, InsertManyBackOnce) {
   }
 }
 
-TEST(TestVector, InsertManyBackMultiple) {
+TEST(s21_vector, insert_many_back_multiple) {
   s21::vector<int> vec{0, 1, 4, 9};
   vec.insert_many_back(std::move(16), std::move(25), 36);
 
@@ -497,7 +497,7 @@ TEST(TestVector, InsertManyBackMultiple) {
   }
 }
 
-TEST(TestVector, InsertManyBackNothing) {
+TEST(s21_vector, insert_many_back_nothing) {
   s21::vector<char> vec{'c', 'o', 'o', 'l'};
   vec.insert_many_back();
 
@@ -508,7 +508,7 @@ TEST(TestVector, InsertManyBackNothing) {
   EXPECT_EQ('l', vec[3]);
 }
 
-TEST(TestVector, InsertManyBackEmpty) {
+TEST(s21_vector, insert_many_back_empty) {
   s21::vector<char> vec;
   vec.insert_many_back('c', 'o', 'o', 'l');
 

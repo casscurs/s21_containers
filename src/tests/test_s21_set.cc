@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 
-#include "set.h"
+#include "../s21_containers.h"
 
 TEST(s21_set, empty_constructor) {
   s21::set<int> s;
@@ -138,9 +138,4 @@ TEST(s21_set, insert_many) {
   ASSERT_EQ(out[2], std::make_pair(it.set(12), false));
   ASSERT_EQ(out[3], std::make_pair(it.set(43), true));
   ASSERT_EQ(out[4], std::make_pair(it.set(47), false));
-}
-
-int main(int argc, char** argv) {
-    ::testing::InitGoogleTest(&argc, argv);
-    return RUN_ALL_TESTS();
 }

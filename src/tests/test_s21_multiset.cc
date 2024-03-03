@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 
-#include "multiset.h"
+#include "../s21_containers.h"
 
 TEST(s21_multiset, empty_constructor) {
   s21::multiset<int> s;
@@ -167,9 +167,4 @@ TEST(s21_multiset, insert_many) {
   ASSERT_EQ(out[2].second, true);
   ASSERT_EQ(out[3].second, true);
   ASSERT_EQ(out[4].second, true);
-}
-
-int main(int argc, char** argv) {
-    ::testing::InitGoogleTest(&argc, argv);
-    return RUN_ALL_TESTS();
 }

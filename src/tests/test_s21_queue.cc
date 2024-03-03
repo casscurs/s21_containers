@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 
-#include "../queue/s21_queue.h"
+#include "../s21_containers.h"
 
 TEST(s21_queue, empty_constructor) {
     s21::queue<int> q;
@@ -88,4 +88,15 @@ TEST(s21_queue, swap) {
     ASSERT_EQ(5, q2.size());
     ASSERT_EQ(6, q1.front());
     ASSERT_EQ(5, q2.back());
+}
+
+TEST(s21_queue, insert_many) {
+  s21::queue<int> queue({0, 1, 4, 9});
+  queue.insert_many_back(std::move(16), std::move(25), 36);
+
+  EXPECT_EQ(7, queue.size());
+
+  for (int i = 0; i < 7; ++i, queue.pop()) {
+    EXPECT_EQ(i * i, queue.front());
+  }
 }

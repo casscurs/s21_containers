@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 
-#include "../stack/s21_stack.h"
+#include "../s21_containers.h"
 
 TEST(s21_stack, empty_constructor) {
     s21::stack<int> s;
@@ -85,3 +85,12 @@ TEST(s21_stack, swap) {
     ASSERT_EQ(5, s2.top());
 }
 
+TEST(s21_stack, insert_many) {
+  s21::stack<int> stack({0, 1, 4, 9});
+  stack.insert_many_front(std::move(16), std::move(25), 36);
+
+  EXPECT_EQ(7, stack.size());
+  for (int i = 6; i >= 0; --i, stack.pop()) {
+    EXPECT_EQ(i * i, stack.top());
+  }
+}
