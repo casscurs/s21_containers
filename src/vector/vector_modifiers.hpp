@@ -46,6 +46,7 @@ typename s21::vector<T>::iterator s21::vector<T>::insert(
   }
 
   try {
+    pos->~T();
     new (pos) T(value);
   } catch (...) {
     for (iterator it = pos; it != end_; ++it) {
@@ -142,9 +143,13 @@ typename s21::vector<T>::iterator s21::vector<T>::insert_many(
     }
   }
 
+  for (iterator it = insert_pos; it != insert_pos + args_count; ++it) {
+    it->~T();
+  }
+
   size_t index_in_args = 0;
   try {
-    ((new (insert_pos + index_in_args++) T(std::forward<Args>(args))), ...);
+    ((new (insert_pos + index_in_args++) T(args)), ...);
   } catch (...) {
     iterator k = insert_pos + index_in_args;
     for (iterator delit = insert_pos; delit != k; ++delit) {
