@@ -3,9 +3,11 @@
 #ifndef VECTOR_CLASS_HPP_
 #define VECTOR_CLASS_HPP_
 
-namespace s21 {
+namespace s21
+{
 template <typename T>
-class vector {
+class vector
+{
  private:
   T* begin_;
   T* end_;
@@ -27,6 +29,8 @@ class vector {
   vector(const vector& v);
   vector(vector&& v) noexcept;
   ~vector() noexcept;
+
+  vector<T>& operator=(сonst vector& v);
   vector<T>& operator=(vector&& v);
 
   /* Element access */
