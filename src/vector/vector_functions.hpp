@@ -91,7 +91,7 @@ s21::vector<T>& s21::vector<T>::operator=(const vector& v)
   end_ = begin_ + n;
   AllEnd_ = begin_ + n;
 
-  initializeFromItems(begin_, end_, cpy);
+  initializeFromItems(begin_, end_, v.begin_);
 
   return *this;
 }
