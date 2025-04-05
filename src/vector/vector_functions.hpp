@@ -80,7 +80,7 @@ s21::vector<T>::vector::~vector() noexcept
 
 /* Присваивание копированием */
 template <typename T>
-s21::vector<T>& s21::vector<T>::operator=(vector&& v)
+s21::vector<T>& s21::vector<T>::operator=(const vector& v)
 {
   if (this == &v) return *this;
   full_clear();
@@ -91,7 +91,7 @@ s21::vector<T>& s21::vector<T>::operator=(vector&& v)
   end_ = begin_ + n;
   AllEnd_ = begin_ + n;
 
-  initializeFromItems(begin_, end_, v.begin_);
+  initializeFromItems(begin_, end_, cpy);
 
   return *this;
 }
